@@ -1,0 +1,417 @@
+@import "variables";
+@import "mixins";
+@import "admin-shell";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// ==========================================
+// PAGE HEADER
+// ==========================================
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+
+  &__eyebrow {
+    margin-bottom: 0.4rem;
+    color: $primary-color;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  h1 {
+    font: italic 900 2.2rem/1.2 $heading-font;
+  }
+
+  &__text p:last-child {
+    margin-top: 0.4rem;
+    color: $muted-text;
+  }
+}
+
+// ==========================================
+// BUTTONS
+// ==========================================
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border: 2px solid $primary-color;
+  border-radius: $button-radius;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &--primary {
+    background: $primary-color;
+    color: white;
+
+    &:hover {
+      background: $button-hover;
+      border-color: $button-hover;
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $primary-color;
+
+    &:hover {
+      background: $primary-color;
+      color: white;
+    }
+  }
+}
+
+// ==========================================
+// STATUS BADGES
+// ==========================================
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+
+  &--pending {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  &--accepted {
+    background: #dcebd5;
+    color: #4f7a47;
+  }
+
+  &--rejected {
+    background: #fee2e2;
+    color: $unavailable-color;
+  }
+
+  &--cancelled {
+    background: #eee5df;
+    color: $muted-text;
+  }
+
+  &--completed {
+    background: $tint;
+    color: $accent-color;
+  }
+}
+
+// ==========================================
+// SEARCH & FILTERS
+// ==========================================
+.request-controls {
+  @include card;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.1rem 1.25rem;
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    label {
+      color: $accent-color;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    input,
+    select {
+      @include field;
+      padding: 0.65rem 1rem;
+    }
+
+    &--search {
+      flex: 1 1 16rem;
+    }
+  }
+}
+
+// ==========================================
+// REQUEST TABLE & LIST
+// ==========================================
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+
+  h2 {
+    font: italic 900 1.5rem/1.2 $heading-font;
+  }
+
+  p {
+    color: $muted-text;
+    font-size: 0.85rem;
+  }
+}
+
+.table-card {
+  @include card;
+  padding: 0;
+  overflow: hidden;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.request-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+
+  th, td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid $border-color;
+  }
+
+  th {
+    background: $tint;
+    color: $accent-color;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  tbody tr {
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba($tint, 0.4);
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+.client-cell {
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    color: $text-color;
+    font-size: 0.95rem;
+  }
+
+  small {
+    color: $muted-text;
+    font-size: 0.8rem;
+  }
+}
+
+.service-tag {
+  color: $accent-color;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.type-tag {
+  display: inline-block;
+  color: $muted-text;
+  font-size: 0.8rem;
+  margin-left: 0.2rem;
+}
+
+// ==========================================
+// EMPTY STATE
+// ==========================================
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 16rem;
+  padding: 2.5rem 1.5rem;
+  background: rgba($card-background, 0.7);
+  border: 2px dashed $secondary-color;
+  border-radius: $card-radius;
+  text-align: center;
+
+  h3 {
+    font: italic 900 1.5rem/1.2 $heading-font;
+  }
+
+  p {
+    max-width: 24rem;
+    margin-bottom: 0.6rem;
+    color: $muted-text;
+  }
+}
+
+// ==========================================
+// VIEW / UPDATE MODAL DIALOG
+// ==========================================
+.request-modal {
+  width: min(42rem, calc(100% - 2rem));
+  max-height: 90vh;
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  background: $card-background;
+  border: 1px solid $border-color;
+  border-radius: $card-radius;
+  box-shadow: $modal-shadow;
+  color: $text-color;
+
+  &::backdrop {
+    background: rgba(53, 33, 28, 0.5);
+    backdrop-filter: blur(3px);
+  }
+
+  &__container {
+    padding: 1.75rem;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font: italic 900 1.6rem/1.2 $heading-font;
+    }
+  }
+
+  &__eyebrow {
+    color: $primary-color;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    background: white;
+    border: 1px solid $border-color;
+    border-radius: 50%;
+    color: $text-color;
+    font-size: 1.3rem;
+    cursor: pointer;
+
+    &:hover {
+      background: $tint;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid $border-color;
+  }
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 1.1rem;
+  background: rgba($tint, 0.4);
+  border-radius: $input-radius;
+
+  .meta-item {
+    label {
+      display: block;
+      color: $muted-text;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    p {
+      color: $text-color;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 0.15rem;
+    }
+  }
+}
+
+.details-box {
+  padding: 1rem;
+  background: white;
+  border: 1px solid $border-color;
+  border-radius: $input-radius;
+  color: $text-color;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.1rem;
+
+  > label {
+    color: $accent-color;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  select,
+  textarea {
+    @include field;
+  }
+
+  textarea {
+    min-height: 5.5rem;
+    resize: vertical;
+  }
+}
+
+// ==========================================
+// RESPONSIVE DESIGN
+// ==========================================
+@media (max-width: $mobile) {
+  .meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .request-modal__actions {
+    flex-direction: column-reverse;
+
+    .button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,261 @@
+
+@import 'variables';
+
+/* =========================
+   GENERAL STYLES
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: $background-color;
+    color: $text-color;
+    font-family: $body-font;
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1.2rem 5%;
+    background: $background-color;
+    box-shadow: $header-shadow;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    .logo {
+        color: $accent-color;
+        font-family: $heading-font;
+        font-size: 1.9rem;
+        font-weight: 900;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .nav-link {
+        color: $text-color;
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+
+    .btn-outline {
+        padding: 0.65rem 1.4rem;
+        border: 1px solid $primary-color;
+        border-radius: $button-radius;
+        color: $primary-color;
+
+        &:hover {
+            background: $primary-color;
+            color: white;
+        }
+    }
+
+    .btn-solid {
+        padding: 0.65rem 1.5rem;
+        border: 1px solid $button-color;
+        border-radius: $button-radius;
+        background: $button-color;
+        color: white;
+
+        &:hover {
+            background: $button-hover;
+            border-color: $button-hover;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+
+    padding: 5rem 8%;
+    background: $hero-background;
+
+    .hero__content {
+        max-width: 42rem;
+    }
+
+    h2 {
+        margin-bottom: 1.2rem;
+        color: $text-color;
+        font-family: $heading-font;
+        font-size: 4rem;
+        font-weight: 900;
+        font-style: italic;
+        line-height: 1.15;
+    }
+
+    p {
+        max-width: 34rem;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .hero__cta {
+        display: inline-block;
+        padding: 0.85rem 2.5rem;
+
+        border: 1px solid $button-color;
+        border-radius: $button-radius;
+        background: $button-color;
+        color: white;
+
+        font-weight: 700;
+        text-decoration: none;
+
+        transition: 0.3s;
+
+        &:hover {
+            background: $button-hover;
+            border-color: $button-hover;
+            transform: translateY(-3px);
+        }
+    }
+
+    .hero__art {
+        display: block;
+        width: 26rem;
+        height: auto;
+        filter: drop-shadow(0 12px 16px rgba(107, 45, 34, 0.15));
+        animation: float 5s ease-in-out infinite;
+    }
+}
+
+
+/* =========================
+   FLOATING ANIMATION
+========================= */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =========================
+   FEATURES SECTION
+========================= */
+
+.features {
+    padding: 5rem 6%;
+    text-align: center;
+
+    .features__title {
+        margin-bottom: 0.8rem;
+        color: $accent-color;
+        font-family: $heading-font;
+        font-size: 2.6rem;
+        font-weight: 900;
+        font-style: italic;
+    }
+
+    .features__subtitle {
+        max-width: 42rem;
+        margin: 0 auto 3rem;
+        color: $text-color;
+        font-size: 1rem;
+    }
+
+    .features__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+
+        max-width: 72rem;
+        margin: 0 auto;
+    }
+}
+
+
+/* =========================
+   FEATURE CARDS
+========================= */
+
+.card {
+    padding: 2.5rem 2rem;
+    border: 1px solid $border-color;
+    border-radius: $card-radius;
+    background: $card-background;
+    box-shadow: $card-shadow;
+    text-align: left;
+
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(107, 45, 34, 0.14);
+    }
+
+    h3 {
+        margin-bottom: 0.8rem;
+        color: $accent-color;
+        font-family: $body-font;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    p {
+        color: $text-color;
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+    padding: 1.5rem;
+    border-top: 1px solid $border-color;
+    background: $background-color;
+    color: $text-color;
+    font-size: 0.85rem;
+    text-align: center;
+}

@@ -1,0 +1,126 @@
+@import "variables";
+@import "mixins";
+ 
+
+* { 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+ 
+body {
+  @include center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, $hero-background, $background-color);
+  color: $text-color;
+  font-family: $body-font;
+}
+ 
+/* ====================
+   Card
+==================== */
+main {
+    position: relative;
+    width: min(100%, 56rem);
+    min-height: 35rem;
+    padding: 5rem 4rem 3rem;
+    background: $card-background;
+    border: 1px solid $border-color;
+    border-radius: $card-radius;
+    box-shadow: $card-shadow;
+    overflow: hidden;
+ 
+  // color panel on the right, fading into the card
+  // (to use an image later, add: background-image: url("../images/your-image.jpg");)
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0 0 0 45%;
+            background: linear-gradient(135deg, $hero-background, $secondary-color);
+            @include fade-right;
+            pointer-events: none;
+        }
+ 
+        @media (max-width: $mobile) {
+            padding: 5rem 1.75rem 2.5rem;
+            &::after { display: none; }
+        }
+}
+ 
+/* ====================
+   Content (left half)
+==================== */
+h1 {
+    margin: 0 0 1rem;
+    font-family: $heading-font;
+    font-size: 2.5rem;
+    font-weight: 900;
+ 
+}
+ 
+form {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 21rem;
+ 
+  input {
+    padding: 1.2rem 1.4rem;
+    width: 100%;
+    background: #fff;
+    border: 1px solid $border-color;
+    border-radius: $input-radius;
+    color: $text-color;
+    font: 500 0.95rem $body-font;
+    transition: border-color 0.2s, box-shadow 0.2s;
+ 
+    &::placeholder { color: rgba($text-color, 0.4); }
+ 
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 4px rgba($primary-color, 0.2);
+    }
+  }
+ 
+  button {
+    margin-top: 0.5rem;
+    padding: 1.2rem;
+    background: $button-color;
+    color: #fff;
+    border: 0;
+    width: 100%;
+    border-radius: $button-radius;
+    font: 700 1rem $body-font;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+ 
+    &:hover {
+      background: $button-hover;
+      transform: translateY(-2px);
+      box-shadow: $card-shadow;
+    }
+    &:focus-visible {
+      outline: 3px solid $accent-color;
+      outline-offset: 3px;
+    }
+  }
+ 
+  p {
+    margin: 0.75rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid $border-color;
+    font-size: 1rem;
+  }
+ 
+  a {
+    color: $primary-color;
+    font-weight: 700;
+ 
+    &:hover { color: $button-hover; }
+  }
+}

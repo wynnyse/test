@@ -1,0 +1,541 @@
+@import "variables";
+@import "mixins";
+@import "admin-shell";
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+.page-header {
+  margin-bottom: 1.75rem;
+ 
+  &__eyebrow {
+    margin-bottom: 0.4rem;
+    color: $primary-color;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+ 
+  h1 {
+    font: italic 900 2.2rem/1.2 $heading-font;
+  }
+ 
+  p:last-child {
+    margin-top: 0.4rem;
+    color: $muted-text;
+  }
+}
+ 
+// success / error message
+.notice {
+  margin-bottom: 1.25rem;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+ 
+  &--success {
+    background: #edf5e9;
+    border: 1px solid #cbdcc7;
+    color: #426b47;
+  }
+ 
+  &--error {
+    background: #fff0ed;
+    border: 1px solid #edc5bc;
+    color: #9b4037;
+  }
+}
+ 
+// ==========================================
+// BUTTONS
+// ==========================================
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border: 2px solid $primary-color;
+  border-radius: $button-radius;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+ 
+  &:hover {
+    transform: translateY(-2px);
+  }
+ 
+  &--primary {
+    background: $primary-color;
+    color: white;
+ 
+    &:hover {
+      background: $button-hover;
+      border-color: $button-hover;
+    }
+  }
+ 
+  &--outline {
+    background: transparent;
+    color: $primary-color;
+ 
+    &:hover {
+      background: $primary-color;
+      color: white;
+    }
+  }
+ 
+  // delete: red outline
+  &--danger {
+    background: transparent;
+    border-color: #c25b52;
+    color: #a33a3a;
+ 
+    &:hover {
+      background: #a33a3a;
+      border-color: #a33a3a;
+      color: white;
+    }
+  }
+}
+ 
+// ==========================================
+// TABS
+// ==========================================
+.content-tabs {
+  display: flex;
+  gap: 1.75rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid $border-color;
+ 
+  &__button {
+    padding: 0.8rem 0.2rem;
+    background: none;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    color: $muted-text;
+    font-weight: 700;
+ 
+    &:hover {
+      color: $text-color;
+    }
+ 
+    &.active,
+    &.is-active,
+    &[aria-selected="true"] {
+      border-bottom-color: $primary-color;
+      color: $primary-color;
+    }
+  }
+}
+ 
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+ 
+  h2 {
+    font: italic 900 1.5rem/1.2 $heading-font;
+  }
+ 
+  p {
+    margin-top: 0.2rem;
+    color: $muted-text;
+    font-size: 0.85rem;
+  }
+}
+ 
+// ==========================================
+// SERVICE CARDS
+// ==========================================
+.service-grid {
+  @include card-grid;
+}
+ 
+.service-card {
+  @include card;
+  @include lift;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+ 
+  // image area (shows a soft color + text when there is no image)
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12rem;
+    background: $tint;
+    color: $muted-text;
+    font-size: 0.8rem;
+ 
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+ 
+  &__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.25rem;
+ 
+    h3 {
+      font: italic 900 1.25rem/1.2 $heading-font;
+    }
+ 
+    p {
+      color: $muted-text;
+      font-size: 0.85rem;
+    }
+ 
+    // status badge
+    .service-card__status {
+      @include badge(#fde4d2, #c8602a);
+      align-self: flex-start;
+ 
+      &[data-status="available"]   { background: #dcebd5; color: #4f7a47; }
+      &[data-status="unavailable"] { background: #f4d6d6; color: #a33a3a; }
+    }
+ 
+    // keep a gap above the button, and pin the button to the bottom
+    p:last-of-type {
+      margin-bottom: 0.75rem;
+    }
+ 
+    .service-card__edit {
+      margin-top: auto;
+    }
+  }
+}
+ 
+// ==========================================
+// PORTFOLIO CARDS
+// ==========================================
+.portfolio-grid {
+  @include card-grid;
+}
+ 
+.portfolio-card {
+  @include card;
+  @include lift;
+  overflow: hidden;
+ 
+  &__image {
+    aspect-ratio: 4 / 3;
+    background: $tint;
+ 
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+ 
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.1rem 1.25rem 1.25rem;
+ 
+    h3 {
+      font: italic 900 1.2rem/1.2 $heading-font;
+      overflow-wrap: anywhere;
+    }
+ 
+    .portfolio-card__category {
+      @include badge($tint, $accent-color);
+      align-self: flex-start;
+    }
+ 
+    .portfolio-card__visibility {
+      color: $muted-text;
+      font-size: 0.8rem;
+ 
+      &--on  { color: #4f7a47; }
+      &--off { color: $muted-text; }
+    }
+ 
+    // Edit + Delete buttons
+    .portfolio-card__actions {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+ 
+      .button {
+        flex: 1;
+        padding-inline: 0.75rem;
+      }
+    }
+  }
+}
+ 
+// ==========================================
+// EMPTY STATE
+// ==========================================
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 16rem;
+  padding: 2.5rem 1.5rem;
+  background: rgba($card-background, 0.7);
+  border: 2px dashed $secondary-color;
+  border-radius: $card-radius;
+  text-align: center;
+ 
+  h3 {
+    font: italic 900 1.5rem/1.2 $heading-font;
+  }
+ 
+  p {
+    max-width: 24rem;
+    margin-bottom: 0.6rem;
+    color: $muted-text;
+  }
+}
+ 
+// ==========================================
+// POPUPS (dialogs)
+// ==========================================
+dialog {
+  margin: auto;   // needed: the reset above removed the default centering
+  max-height: 90vh;
+  padding: 0;
+  overflow: auto;
+  background: $card-background;
+  border: 1px solid $border-color;
+  border-radius: $card-radius;
+  box-shadow: 0 24px 60px rgba(107, 45, 34, 0.3);
+  color: $text-color;
+ 
+  &::backdrop {
+    background: rgba(53, 33, 28, 0.5);
+    backdrop-filter: blur(3px);
+  }
+}
+ 
+// round "x" button used by both popups
+%close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: white;
+  border: 1px solid $border-color;
+  border-radius: 50%;
+  color: $text-color;
+  font-size: 1.3rem;
+  line-height: 1;
+ 
+  &:hover {
+    background: $tint;
+  }
+}
+ 
+// ---------- Add / Edit artwork ----------
+.artwork-modal {
+  width: min(36rem, calc(100% - 2rem));
+ 
+  > form {
+    padding: 1.75rem;
+  }
+ 
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+ 
+    h2 {
+      font: italic 900 1.6rem/1.2 $heading-font;
+    }
+  }
+ 
+  &__close {
+    @extend %close-button;
+  }
+ 
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid $border-color;
+  }
+}
+ 
+.artwork-form__fields {
+  border: 0;
+ 
+  // hide the legend visually (screen readers still read it)
+  legend {
+    position: absolute;
+    left: -9999px;
+  }
+ 
+  label {
+    display: block;
+    margin: 1rem 0 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+ 
+  input:not([type="checkbox"]),
+  textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    background: white;
+    border: 1px solid $border-color;
+    border-radius: 12px;
+    color: $text-color;
+    transition: border-color 0.2s, box-shadow 0.2s;
+ 
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 4px rgba($primary-color, 0.18);
+    }
+  }
+ 
+  textarea {
+    resize: vertical;
+  }
+ 
+  .form-help {
+    margin-top: 0.4rem;
+    color: $muted-text;
+    font-size: 0.75rem;
+  }
+ 
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 500;
+ 
+    input {
+      accent-color: $primary-color;
+    }
+  }
+}
+ 
+.artwork-image-preview {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: $tint;
+  border: 1px dashed $secondary-color;
+  border-radius: 14px;
+  text-align: center;
+ 
+  img {
+    max-height: 16rem;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+ 
+  figcaption {
+    margin-top: 0.4rem;
+    color: $muted-text;
+    font-size: 0.75rem;
+  }
+}
+ 
+// ---------- Service details ----------
+.service-modal {
+  width: min(34rem, calc(100% - 2rem));
+ 
+  &__close {
+    @extend %close-button;
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    z-index: 1;
+  }
+ 
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14rem;
+    background: $tint;
+    color: $muted-text;
+    font-size: 0.8rem;
+ 
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+ 
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+ 
+    h2 {
+      font: italic 900 1.6rem/1.2 $heading-font;
+    }
+ 
+    p {
+      color: $muted-text;
+    }
+ 
+    strong {
+      color: $text-color;
+    }
+ 
+    // first <p> is the status badge (colored by data-status, set in the JS)
+    > p:first-child {
+      @include badge(#fde4d2, #c8602a);
+      align-self: flex-start;
+ 
+      &[data-status="available"]   { background: #dcebd5; color: #4f7a47; }
+      &[data-status="unavailable"] { background: #f4d6d6; color: #a33a3a; }
+    }
+ 
+    .button {
+      align-self: flex-start;
+      margin-top: 0.75rem;
+    }
+  }
+}
+ 
+// ==========================================
+// RESPONSIVE
+// ==========================================
+@media (max-width: $mobile) {
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+ 
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+ 
+  .artwork-modal__footer {
+    flex-direction: column-reverse;
+ 
+    .button {
+      width: 100%;
+    }
+  }
+}

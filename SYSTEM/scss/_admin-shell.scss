@@ -1,0 +1,160 @@
+// Shared admin shell: reset + page layout + sidebar.
+// Every admin page loads this, so the sidebar looks identical everywhere.
+@import "variables";
+
+// ---------- Reset ----------
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: block;
+  background: $background-color;
+  color: $text-color;
+  font-family: $body-font;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid rgba($primary-color, 0.35);
+  outline-offset: 3px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+// ---------- Layout: sidebar | content ----------
+.admin-layout {
+  display: grid;
+  grid-template-columns: $sidebar-width minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.admin-main {
+  min-width: 0;
+  padding: 2rem 2.5rem;
+}
+
+// ---------- Sidebar ----------
+.sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 1.5rem 1rem;
+  background: $card-background;
+  border-right: 1px solid $border-color;
+
+  &__brand {
+    margin-bottom: 1.5rem;
+    padding: 0 0.75rem;
+
+    h2 {
+      color: $accent-color;
+      font: italic 900 1.6rem/1.1 $heading-font;
+    }
+
+    p {
+      margin-top: 0.3rem;
+      color: $muted-text;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.25rem;
+    overflow-y: auto;
+
+    a {
+      padding: 0.7rem 0.9rem;
+      border-left: 3px solid transparent;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+
+      &:hover {
+        background: rgba($secondary-color, 0.3);
+      }
+    }
+
+    // current page
+    a.active,
+    a[aria-current="page"] {
+      background: rgba($secondary-color, 0.5);
+      border-left-color: $primary-color;
+      color: $primary-color;
+      font-weight: 700;
+    }
+
+    // Log Out (last link) sits at the bottom
+    a:last-child {
+      margin-top: auto;
+      border: 2px solid $primary-color;
+      border-radius: $button-radius;
+      color: $primary-color;
+      text-align: center;
+
+      &:hover {
+        background: $primary-color;
+        color: white;
+      }
+    }
+  }
+}
+
+// ---------- Responsive ----------
+@media (max-width: $tablet) {
+  .admin-layout {
+    grid-template-columns: 1fr;   // sidebar goes on top
+  }
+
+  .admin-main {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid $border-color;
+
+    &__nav {
+      flex-flow: row wrap;
+
+      a:last-child {
+        margin-top: 0;
+      }
+    }
+  }
+}

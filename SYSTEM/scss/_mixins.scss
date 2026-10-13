@@ -1,0 +1,82 @@
+/* ====================
+   Mixins
+==================== */
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+@mixin fade-right($start: 45%) {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 $start);
+  mask-image: linear-gradient(to right, transparent, #000 $start);
+}
+
+@mixin field {
+  width: 100%;
+  padding: 0.8rem 1.1rem;
+  background: #fff;
+  border: 1px solid $border-color;
+  border-radius: $input-radius;
+  color: $text-color;
+  font: 500 0.95rem $body-font;
+  transition: border-color 0.2s, box-shadow 0.2s;
+ 
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 4px rgba($primary-color, 0.2);
+  }
+}
+
+
+//DASHBOARD THIBNGsS
+@mixin card {
+  background: $card-background;
+  border: 1px solid $border-color;
+  border-radius: $card-radius;
+  box-shadow: $card-shadow;
+}
+ 
+// rounded outline button
+@mixin pill {
+  padding: 0.55rem 1.3rem;
+  border: 2px solid $primary-color;
+  border-radius: $button-radius;
+  color: $primary-color;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+ 
+  &:hover {
+    background: $primary-color;
+    color: white;
+  }
+}
+
+//for services and portfolio
+@mixin lift {
+  transition: transform 0.2s, box-shadow 0.2s;
+ 
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(107, 45, 34, 0.14);
+  }
+}
+ 
+@mixin badge($bg, $color) {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  background: $bg;
+  color: $color;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+ 
+@mixin card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.5rem;
+}
+ 

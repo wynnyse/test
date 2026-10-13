@@ -1,0 +1,150 @@
+/* ====================
+   Mixins
+==================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, #F0D0BD, #f7f4ef);
+  color: #6b2d22;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ====================
+   Card
+==================== */
+main {
+  position: relative;
+  width: min(100%, 64rem);
+  min-height: 38rem;
+  padding: 5rem 5rem 3rem;
+  background: #fff8f0;
+  border: 1px solid #e8d6ca;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(107, 45, 34, 0.1);
+  overflow: hidden;
+}
+main::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 45%;
+  background: linear-gradient(135deg, #F0D0BD, #e2b39a);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 45%);
+  mask-image: linear-gradient(to right, transparent, #000 45%);
+  pointer-events: none;
+}
+@media (max-width: 700px) {
+  main {
+    padding: 5rem 1.75rem 2.5rem;
+  }
+  main::before {
+    left: 1.75rem;
+  }
+  main::after {
+    display: none;
+  }
+}
+
+/* ====================
+   Content (left half)
+==================== */
+h1 {
+  margin: 0 0 1.5rem;
+  font: 900 2.6rem/1.1 "Fraunces", serif;
+}
+
+form {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 21rem;
+}
+form label {
+  margin-top: 0.7rem;
+  color: #7a5a40;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+form input {
+  width: 100%;
+  padding: 0.8rem 1.1rem;
+  background: #fff;
+  border: 1px solid #e8d6ca;
+  border-radius: 14px;
+  color: #6b2d22;
+  font: 500 0.95rem "Montserrat", sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+form input:focus {
+  outline: none;
+  border-color: #b87367;
+  box-shadow: 0 0 0 4px rgba(184, 115, 103, 0.2);
+}
+form select {
+  width: 100%;
+  padding: 0.8rem 1.1rem;
+  background: #fff;
+  border: 1px solid #e8d6ca;
+  border-radius: 14px;
+  color: #6b2d22;
+  font: 500 0.95rem "Montserrat", sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+form select:focus {
+  outline: none;
+  border-color: #b87367;
+  box-shadow: 0 0 0 4px rgba(184, 115, 103, 0.2);
+}
+form select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 2.5rem;
+  background-image: linear-gradient(45deg, transparent 50%, #b87367 50%), linear-gradient(135deg, #b87367 50%, transparent 50%);
+  background-position: calc(100% - 1.3rem) 55%, calc(100% - 0.95rem) 55%;
+  background-size: 0.4rem 0.4rem;
+  background-repeat: no-repeat;
+}
+form button {
+  margin-top: 1.5rem;
+  padding: 0.9rem;
+  background: #b87367;
+  color: #fff;
+  border: 0;
+  border-radius: 30px;
+  font: 700 1rem "Montserrat", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+form button:hover {
+  background: #a2605a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(107, 45, 34, 0.1);
+}
+form button:focus-visible {
+  outline: 3px solid #7a5a40;
+  outline-offset: 3px;
+}
+form p {
+  margin: 0.75rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid #e8d6ca;
+  font-size: 0.85rem;
+}
+form a {
+  color: #b87367;
+  font-weight: 700;
+}
+form a:hover {
+  color: #a2605a;
+}

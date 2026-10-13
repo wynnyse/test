@@ -1,0 +1,123 @@
+/* ====================
+   Mixins
+==================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, #F0D0BD, #f7f4ef);
+  color: #6b2d22;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ====================
+   Card
+==================== */
+main {
+  position: relative;
+  width: min(100%, 56rem);
+  min-height: 35rem;
+  padding: 5rem 4rem 3rem;
+  background: #fff8f0;
+  border: 1px solid #e8d6ca;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(107, 45, 34, 0.1);
+  overflow: hidden;
+}
+main::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 45%;
+  background: linear-gradient(135deg, #F0D0BD, #e2b39a);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 45%);
+  mask-image: linear-gradient(to right, transparent, #000 45%);
+  pointer-events: none;
+}
+@media (max-width: 700px) {
+  main {
+    padding: 5rem 1.75rem 2.5rem;
+  }
+  main::after {
+    display: none;
+  }
+}
+
+/* ====================
+   Content (left half)
+==================== */
+h1 {
+  margin: 0 0 1rem;
+  font-family: "Fraunces", serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+form {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 21rem;
+}
+form input {
+  padding: 1.2rem 1.4rem;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e8d6ca;
+  border-radius: 14px;
+  color: #6b2d22;
+  font: 500 0.95rem "Montserrat", sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+form input::placeholder {
+  color: rgba(107, 45, 34, 0.4);
+}
+form input:focus {
+  outline: none;
+  border-color: #b87367;
+  box-shadow: 0 0 0 4px rgba(184, 115, 103, 0.2);
+}
+form button {
+  margin-top: 0.5rem;
+  padding: 1.2rem;
+  background: #b87367;
+  color: #fff;
+  border: 0;
+  width: 100%;
+  border-radius: 30px;
+  font: 700 1rem "Montserrat", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+form button:hover {
+  background: #a2605a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(107, 45, 34, 0.1);
+}
+form button:focus-visible {
+  outline: 3px solid #7a5a40;
+  outline-offset: 3px;
+}
+form p {
+  margin: 0.75rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e8d6ca;
+  font-size: 1rem;
+}
+form a {
+  color: #b87367;
+  font-weight: 700;
+}
+form a:hover {
+  color: #a2605a;
+}
